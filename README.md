@@ -12,4 +12,14 @@ autoencoders
 ```
 
 
+### Semantic hashing
+* [Autoencoder with noise injected](semantic_hashing.py) prior to sigmoid activation forces bit sequence representation preserving information.
+Example with one-hot representation of a word set mapping to 3 dimensions.
+
+```
+foo -> bit sequence: 000
+bar -> bit sequence: 111
+car -> bit sequence: 010
+jar -> bit sequence: 100
+```
 
