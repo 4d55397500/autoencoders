@@ -12,7 +12,6 @@ SAMPLE_AUDIO = {
     "piano": ["https://ccrma.stanford.edu/~jos/wav/pno-cs.wav"]
 }
 
-
 def filename_to_key(fname):
     for k in SAMPLE_AUDIO.keys():
         links = SAMPLE_AUDIO[k]
@@ -25,8 +24,12 @@ def download_audio():
     for k in SAMPLE_AUDIO.keys():
         links = SAMPLE_AUDIO[k]
         for url in links:
-            print(f"Downloading {url}...")
-            urllib.request.urlretrieve(url, filename="./wavs/" + url.split("/")[-1])
+            fname = url.split("/")[-1]
+            if not os.path.exists(f"./wavs/{fname}"):
+                print(f"Downloading {url}...")
+                urllib.request.urlretrieve(url, filename="./wavs/" + fname)
+            else:
+                print(f"{fname} already downloaded")
     print("finished downloads")
 
 
@@ -86,7 +89,7 @@ class SemanticHashing(object):
                 _, batch_loss = self.session.run([self.optimizer, self.loss],
                                                  feed_dict={self.x_in: batch, self.x_out: batch, self.noise: noise})
                 epoch_loss += batch_loss
-            print(f"Epoch: {epoch} Epoch loss: {epoch_loss} Noise std: {noise_std}")
+            print(f"Epoch: {epoch}/{n_epochs} Epoch loss: {epoch_loss} Noise std: {noise_std}")
             h_entropy = self.encoded_entropy(x_train)
             print(f"Encoded entropy: {h_entropy}")
 
@@ -106,9 +109,10 @@ class SemanticHashing(object):
 
 
 def absoluteFilePaths(directory):
-   for dirpath,_,filenames in os.walk(directory):
+   for dirpath, _, filenames in os.walk(directory):
        for f in filenames:
            yield os.path.abspath(os.path.join(dirpath, f))
+
 
 def normalize(v):
     norm = np.linalg.norm(v)
@@ -116,12 +120,13 @@ def normalize(v):
        return v
     return v / norm
 
+
 def main():
 
     CHUNK_SIZE = 10000
 
     import scipy.io.wavfile
-    #download_audio()
+    download_audio()
 
     filenames = list(absoluteFilePaths("./wavs"))
     all_chunks = []
@@ -132,7 +137,6 @@ def main():
         all_chunks += [normalize(x[i: i + CHUNK_SIZE]) for i in range(int(x.shape[0]/CHUNK_SIZE))]
         key = filename_to_key(fname.split("/")[-1])
         keys += [key] * int(x.shape[0]/CHUNK_SIZE)
-
 
     x_train = np.vstack(all_chunks)
     print(f"training set shape: {x_train.shape}")
@@ -153,11 +157,12 @@ def main():
             bitseqmp[bitseq]
         except:
             bitseqmp[bitseq] = []
-        bitseqmp[bitseq] = bitseqmp[bitseq] + [key]
+        bitseqmp[bitseq] += [key]
         print(f"{key} -> bit sequence: {bitseq}")
     print(f"{len(bit_seqs)} distinct bit sequences")
     for k in bitseqmp.keys():
         print(f"{k} -> {bitseqmp[k]}")
 
 
-main()
+if __name__ == '__main__':
+    main()
