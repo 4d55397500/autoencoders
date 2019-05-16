@@ -23,23 +23,3 @@ car -> bit sequence: 010
 jar -> bit sequence: 100
 ```
 
-### Audio semantic hashing
-* Attempt to compress audio files down to bit sequences with semantic hashing. Work in progress.
-
-```
-harpsichord -> bit sequence: 000001000010100
-trumpet -> bit sequence: 010001000111100
-harpsichord -> bit sequence: 000001000010100
-trumpet -> bit sequence: 010001000111100
-trumpet -> bit sequence: 010001000111100
-piano -> bit sequence: 010001000111100
-harpsichord -> bit sequence: 000001000010100
-harpsichord -> bit sequence: 000001000010100
-cello -> bit sequence: 000001010010100
-harpsichord -> bit sequence: 000001000010100
-3 distinct bit sequences
-000001000010100 -> ['harpsichord', 'harpsichord', 'harpsichord', 'harpsichord', 'harpsichord']
-010001000111100 -> ['trumpet', 'trumpet', 'trumpet', 'piano']
-000001010010100 -> ['cello']
-
-```
