@@ -32,9 +32,15 @@ RECONSTRUCTION ~ PCA PROJECTIONS
 Example with one-hot representation of a word set mapping to 3 dimensions.
 
 ```
+...
+Epoch: 96 Epoch loss: 8.67664722725749 Noise std: 113.59573078181967
+Epoch: 97 Epoch loss: 11.23818837851286 Noise std: 119.27551732091065
+Epoch: 98 Epoch loss: 10.360635101795197 Noise std: 125.23929318695619
+Epoch: 99 Epoch loss: 12.108762972056866 Noise std: 131.50125784630401
+---------------------------------------------
 foo -> bit sequence: 000
-bar -> bit sequence: 111
-car -> bit sequence: 010
-jar -> bit sequence: 100
+bar -> bit sequence: 101
+car -> bit sequence: 110
+jar -> bit sequence: 011
 ```
 
