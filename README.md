@@ -12,7 +12,7 @@ autoencoders
 ```
 
 
-### Semantic hashing
+### Semantic hashing on categorical elements
 * [Autoencoder with noise injected](semantic_hashing.py) prior to sigmoid activation forces bit sequence representation preserving information.
 Example with one-hot representation of a word set mapping to 3 dimensions.
 
