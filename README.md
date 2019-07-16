@@ -29,7 +29,7 @@ RECONSTRUCTION ~ PCA PROJECTIONS
 
 ### Semantic hashing on categorical elements
 * [Autoencoder with noise injected](semantic_hashing.py) prior to sigmoid activation forces bit sequence representation preserving information.
-Example with one-hot representation of a word set mapping to 3 dimensions.
+[Example with one-hot representation of a word set](categorical_semantic_hashing.py) mapping to 3 dimensions.
 
 ```
 ...
@@ -44,3 +44,23 @@ car -> bit sequence: 110
 jar -> bit sequence: 011
 ```
 
+
+### Semantic hashing on bag of words
+* [Example on bag of words](bag_of_words_semantic_hashing.py) mapping to 5 dimensions.
+
+```
+...
+Epoch: 96 Epoch loss: 13.278802040964365 Noise std: 113.59573078181967
+Epoch: 97 Epoch loss: 13.692236740142107 Noise std: 119.27551732091065
+Epoch: 98 Epoch loss: 9.443496888503432 Noise std: 125.23929318695619
+Epoch: 99 Epoch loss: 12.24506833218038 Noise std: 131.50125784630401
+---------------------------------------------
+this is a cat -> bit sequence: 10100
+this is my hat -> bit sequence: 10111
+this is a hat -> bit sequence: 10101
+this is a big hat -> bit sequence: 00101
+this is one fat cat -> bit sequence: 11110
+this is a smelly rat -> bit sequence: 11101
+that is completely random -> bit sequence: 01000
+like night versus day -> bit sequence: 10011
+```
