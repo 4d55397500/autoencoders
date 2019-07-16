@@ -3,7 +3,7 @@ autoencoders
 
 
 ### Single layer autoencoder 
-* A single layer encoder & decoder autoencoder without activations [learns projections along principal components](linear_ae_pca.py). For example, training on a 2-d plane embedded in 3 dimensions learns projections along that plane.
+* A single layer encoder & decoder autoencoder without activations [learns the encoder as projections along principal components](linear_ae_pca.py). For example, training on a 2-d plane embedded in 3 dimensions trains the encoder to be projections along that plane.
 
 ```
 ...
